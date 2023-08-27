@@ -1,7 +1,26 @@
 const mongoose = require('mongoose')
 
-const restaurant = new mongoose.Schema({
-    name:{
-        type:String
-    }
+const restaurantSchema = new mongoose.Schema({
+    name:String,
+    description: String,
+    category: String,
+    imageURL: String,
+    location: String,
+    phone: String,
+    rating: Number,
+    createdAt:{
+        type:Date,
+        immutable: true,
+        default: () => {
+            return Date.now();
+          },
+    },
+    updatedAt: {
+        type: Date,
+        default: () => {
+          return Date.now();
+        },
+    },
 })
+
+module.exports = mongoose.model("Restaurant",restaurantSchema)
